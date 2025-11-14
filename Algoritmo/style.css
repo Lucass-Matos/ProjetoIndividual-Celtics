@@ -40,7 +40,7 @@ section {
   right: 0;
   
   border-bottom: var(--Branco);
-  padding-bottom: -300px;
+  padding-bottom: 0.1rem;
 }
 
 .header section {
@@ -65,8 +65,8 @@ section {
 
 .navbar a:hover {
   color: var(--DouradoCeltics);
-  border-bottom: 2px solid var(--DouradoCeltics);
-  padding-bottom: 0.5;
+  border-bottom: 0.2rem solid var(--DouradoCeltics);
+  padding-bottom: 0.5rem;
   font-size: 1.2rem;
 }
 .icones {
@@ -79,7 +79,7 @@ section {
   align-items: center;
   height: calc(100vh - 100px); 
   width: 100%;
-  margin-top: 0px; 
+  margin-top: 0.1rem; 
   overflow: hidden;
 }
 
@@ -106,7 +106,7 @@ section {
   align-items: flex-end;
   width: 100%;
   float: left;
-  margin-top: -22px;
+  margin-top: 0.22rem;
   background: #29e652;
   background: linear-gradient(90deg,rgba(41, 230, 82, 1) 15%, rgba(0, 122, 51, 1) 90%);;
 }
@@ -117,7 +117,8 @@ section {
 }
 .card{
   float: left;
-  margin: 80px 0 20px 35px;
+
+  margin: 3.5rem 0.1rem 2rem 1.21rem;
   text-align: center;
   width: 400px;
   height: 250px;
@@ -141,6 +142,7 @@ section {
   height: 190px;
   margin-top: -80px;
 }
-
-
+.hg .high{
+  
+}
 
