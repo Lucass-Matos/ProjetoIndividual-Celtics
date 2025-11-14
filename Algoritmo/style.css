@@ -21,12 +21,16 @@
 
 body {
   background-color: var(--corCeltics);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 section {
-  padding: 3rem 2rem;
-  margin: 0 auto;
-  max-width: 1200px;
+
+
+  max-width: 100vw;
 }
 
 .header {
@@ -34,7 +38,7 @@ section {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 99;
+  
   border-bottom: var(--Branco);
   padding-bottom: -300px;
 }
@@ -99,18 +103,44 @@ section {
     text-align: center;
 }
 .elenco .row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 1.5rem;
+  align-items: flex-end;
+  width: 100%;
+  float: left;
+  margin-top: -22px;
+  background: #29e652;
+  background: linear-gradient(90deg,rgba(41, 230, 82, 1) 15%, rgba(0, 122, 51, 1) 90%);;
 }
-.elenco .row .card h2{
-  font-size: 2rem;
-  color: var(--DouradoCeltics);
+.elenco{
+  background-color: none;
+  text-align: center;
+
 }
-.elenco .row .card p{
-  font-size: 1.2rem;
-  color: var(--DouradoCeltics);
-  padding: 2rem;
+.card{
+  float: left;
+  margin: 80px 0 20px 35px;
+  text-align: center;
+  width: 400px;
+  height: 250px;
+  background-color: var(--corCeltics);
+  border-radius: 0 30px;
+  border-bottom: 10px var(--DouradoCeltics) solid;
+  border-right: 10px var(--DouradoCeltics) solid;
 }
+
+.card h2{
+  text-align: center;
+  color: var(--Branco); 
+}
+ .card p{
+  text-align: center;
+  color: var(--Branco); 
+
+}
+.card img{
+  width: 260px;
+  height: 190px;
+  margin-top: -80px;
+}
+
 
 
