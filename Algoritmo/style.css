@@ -6,6 +6,10 @@
   font-size: 16px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* reset simples */
 * {
   box-sizing: border-box;
@@ -334,7 +338,6 @@ right: 0;
   justify-content: center;
   text-shadow: 0 0 10px black;
   transition: all 0.3s ease;
-  pointer-events: none;
 }
 
 .highlight-card:hover img{
