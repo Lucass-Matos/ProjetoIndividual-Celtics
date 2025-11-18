@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url(img/JaylenBrown\ GIF.gif);
+   background-size: cover;
+   background-position: center;
+}
+
+.container{
+    width: 20rem;
+    background-color: transparent;
+    border: 1rem solid rgba(255, 255, 255 .2);
+    border-radius: 10px;
+    color: white;
+    padding: 2rem 3rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.container h1{
+    font-size: 36px;
+    align-items: center;
+}
+
+.boxIpt{
+    position: relative;
+    width: 100%;
+    height: 3rem;
+    margin: 2rem 0;
+}
+
+.boxIpt input{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255 .2);
+    outline: none;
+    font-size: 16px;
+    color: white;
+    padding: 0.4rem 0rem 0rem 1rem;
+}
+
+.boxIpt input::placeholder{
+    color: white;
+}
+
+.boxIpt i{
+    position: absolute;
+    height: 1rem;
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-60%);
+}
+
+.remember-forgot{
+    display: flex;
+    justify-content: space-between;
+    margin: 0.6rem 3rem 1.7rem 0rem ;
+}
+
+.remember-forgot label input{
+    accent-color: #fff;
+    margin-right: 5px
+}
+
+.remember-forgot a{
+    text-decoration: none;
+    color: white;
+}
+.remember-forgot a:hover{
+    text-decoration: underline;
+}
+
+.login{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600px rgba(255, 255, 255 .2);
+}
+
+.login:hover{
+    background-color: #007a33;
+    border: none;
+    color: white;
+    transition: 0.5s;
+}
+
+.linkCadastro{
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.linkCadastro a{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+.linkCadastro a:hover{
+    text-decoration: underline;
+    color: #ba9653;
+}
