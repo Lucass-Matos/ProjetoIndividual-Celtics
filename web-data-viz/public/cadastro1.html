@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="cadastro.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Cadastro</title>
+  </head>
+  <body>
+    <main class="container">
+      <form>
+        <h1>
+          Bem Vindo ao
+          <p style="color: #007a33">Cadastro</p>
+        </h1>
+        <div class="boxIpt">
+          <input type="text" id="nomeUser" placeholder="Nome de usuário" />
+        </div>
+        <div class="boxIpt">
+          <input
+            type="email"
+            id="emailUser"
+            placeholder="ex: email@email.com"
+          />
+          <i class="bx bxs-user"></i>
+        </div>
+        <div class="boxIpt">
+          <input
+            type="password"
+            id="senhaUser"
+            placeholder="No mínimo 7 dígitos"
+          />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+
+        <div class="remember-forgot">
+          <a href="login1.html">Já tenho conta</a>
+        </div>
+
+        <button type="button" onclick="cadastrar()" class="cadastrobtn">
+          Cadastro
+        </button>
+      </form>
+    </main>
+  </body>
+</html>
+
+<script>
+  function cadastrar() {
+    //  Pega os valores da input
+    var nomeVar = nomeUser.value;
+    var emailVar = emailUser.value;
+    var senhaVar = senhaUser.value;
+
+    // Pega o valor do html para mudar a cor da borda
+    var iptNome = document.getElementById("nomeUser");
+    var iptEmail = document.getElementById("emailUser");
+    var iptSenha = document.getElementById("senhaUser");
+
+    // Limpar erros antigos (Resetar a cor)
+    iptNome.classList.remove("input-erro");
+    iptEmail.classList.remove("input-erro");
+    iptSenha.classList.remove("input-erro");
+
+    // VALIDAÇÕES
+    var erro = false;
+
+    // Validação de Campos Vazios
+    if (nomeVar == "" || emailVar == "" || senhaVar == "") {
+      alert("Preencha todos os campos!");
+      if (nomeVar == "") iptNome.classList.add("input-erro");
+      if (emailVar == "") iptEmail.classList.add("input-erro");
+      if (senhaVar == "") iptSenha.classList.add("input-erro");
+      return false;
+    }
+
+    // Validação de Email (@)
+    if (emailVar.indexOf("@") == -1) {
+      alert("O email deve conter um '@' válido!");
+      iptEmail.classList.add("input-erro");
+      erro = true;
+    }
+
+    // Validação de Senha (> 6 caracteres)
+    if (senhaVar.length <= 6) {
+      alert("A senha deve ter mais de 6 caracteres!");
+      iptSenha.classList.add("input-erro");
+      erro = true;
+    }
+
+    // Validação de Nome
+    if (nomeVar.length < 3) {
+      alert("O nome deve ter pelo menos 3 caracteres!");
+      iptNome.classList.add("input-erro");
+      erro = true;
+    }
+
+    // Se encontrou algum erro, para aqui.
+    if (erro) return false;
+
+    // ENVIO PARA O BANCO
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          alert(
+            "Cadastro realizado com sucesso! Redirecionando para o login..."
+          );
+
+          setTimeout(() => {
+            window.location = "login1.html";
+          }, 2000);
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // Se der erro no servidor (ex: email duplicado), deixa vermelho também
+        alert("Erro ao cadastrar. Verifique se o email já existe.");
+        iptEmail.classList.add("input-erro");
+      });
+
+    return false;
+  }
+</script>

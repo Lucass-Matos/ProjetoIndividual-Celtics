@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Jogo - Celtics</title>
+    <link rel="stylesheet" href="palpite.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body onload="validarSessao()">
+
+    <header class="header">
+        <section class="header-section">
+            <nav class="navbar">
+                <a href="index.html" class="logoC"><img src="img/LogoCeltics.png" height="70"></a>
+                
+                <div class="nav-links">
+                    <a href="index.html">Início</a>
+                    <a href="index.html#nextgames">Escolher outro Jogo</a>
+                    <a href="#" onclick="sair()" style="color: #ff4d4d; border: 1px solid #ff4d4d; border-radius: 20px; padding: 5px 15px; margin-left: 20px;">Sair</a>
+                </div>
+            </nav>
+        </section>
+    </header>
+
+    <section class="simulacao-container">
+        
+        <div id="etapa_palpite" class="stage-box">
+            <h1 class="titulo">Faça seu Palpite</h1>
+            <p class="subtitulo">Boston Celtics vs <span id="nome_adversario_titulo">...</span></p>
+
+            <div class="duelo-inputs">
+                
+                <div class="time-col">
+                    <img src="img/LogoCeltics.png" class="logo-mini">
+                    <h3>Boston Celtics</h3>
+                    <div class="input-group">
+                        <div class="quarter-box">
+                            <label>1º Q</label> 
+                            <input type="number" id="palpite_c1">
+                        </div>
+                        <div class="quarter-box">
+                            <label>2º Q</label> 
+                            <input type="number" id="palpite_c2">
+                        </div>
+                        <div class="quarter-box">
+                            <label>3º Q</label> 
+                            <input type="number" id="palpite_c3">
+                        </div>
+                        <div class="quarter-box">
+                            <label>4º Q</label> 
+                            <input type="number" id="palpite_c4">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="time-col">
+                    <img id="img_adversario" src="" class="logo-mini">
+                    <h3 id="nome_adversario_box">Adversário</h3>
+                    <div class="input-group">
+                        <div class="quarter-box">
+                            <label>1º Q</label> 
+                            <input type="number" id="palpite_v1">
+                        </div>
+                        <div class="quarter-box">
+                            <label>2º Q</label> 
+                            <input type="number" id="palpite_v2">
+                        </div>
+                        <div class="quarter-box">
+                            <label>3º Q</label> 
+                            <input type="number" id="palpite_v3">
+                        </div>
+                        <div class="quarter-box">
+                            <label>4º Q</label> 
+                            <input type="number" id="palpite_v4">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button onclick="realizarSimulacao()" class="btn-acao">SIMULAR JOGO</button>
+        </div>
+
+        <div id="etapa_placar" class="stage-box" style="display: none;">
+            <h1 class="titulo">Resultado Final</h1>
+            <div class="placar-final">
+                <div class="time-placar">
+                    <img src="img/LogoCeltics.png">
+                    <h2 id="placar_celtics">0</h2>
+                </div>
+                <div class="x-div">X</div>
+                <div class="time-placar">
+                    <img id="img_adversario_placar" src="">
+                    <h2 id="placar_visitante">0</h2>
+                </div>
+            </div>
+            <h3 id="msg_resultado" class="msg-vencedor"></h3>
+            <button onclick="verDashboard()" class="btn-acao">VER ANÁLISE NA DASHBOARD</button>
+        </div>
+
+        <div id="etapa_dashboard" class="dashboard-layout" style="display: none;">
+            <aside class="sidebar">
+                <h3>Menu</h3>
+                <button onclick="window.location.href='index.html'" class="btn-sidebar">🏠 Home</button>
+                <button onclick="location.reload()" class="btn-sidebar">🔄 Simular Novamente</button>
+                <button onclick="window.location.href='index.html#nextgames'" class="btn-sidebar">🏀 Outro Jogo</button>
+            </aside>
+
+            <main class="dashboard-content">
+                <h1 class="titulo">Estatísticas do Palpite</h1>
+                
+                <div class="kpi-row">
+                    <div class="kpi-box">
+                        <span>Total Palpite</span>
+                        <h3 id="kpi_palpite">0</h3>
+                    </div>
+                    <div class="kpi-box">
+                        <span>Total Real</span>
+                        <h3 id="kpi_real">0</h3>
+                    </div>
+                    <div class="kpi-box">
+                        <span>Taxa de Acerto</span>
+                        <h3 id="kpi_acerto">0%</h3>
+                    </div>
+                </div>
+
+                <div class="charts-area">
+                    <div class="chart-card"><canvas id="chartCeltics"></canvas></div>
+                    <div class="chart-card"><canvas id="chartVisitante"></canvas></div>
+                </div>
+            </main>
+        </div>
+
+    </section>
+
+    <script src="game_logic.js"></script>
+</body>
+</html>

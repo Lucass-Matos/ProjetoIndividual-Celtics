@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Torcedor</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background-color: #002b0f; color: white; }
+        .menu-header { text-align: center; padding: 2rem; margin-top: 80px; }
+        .welcome-msg { font-size: 2rem; margin-bottom: 1rem; }
+        .welcome-msg span { color: var(--DouradoCeltics); }
+        .jogos-wrapper { margin-bottom: 4rem; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <section class="header-section">
+            <nav class="navbar">
+                <a href="index.html" class="logoC"><img src="img/LogoCeltics.png" height="70"></a>
+                <a href="index.html">Voltar para Home</a>
+                <a href="#" onclick="sair()" style="color: #ff4d4d;">Sair</a>
+            </nav>
+        </section>
+    </header>
+
+    <div class="menu-header">
+        <h1 class="welcome-msg">Olá, <span id="b_usuario">Torcedor</span>!</h1>
+        <p>Escolha um jogo para simular o resultado:</p>
+    </div>
+
+    <div class="jogos-wrapper">
+
+        <div class="jogo-card">
+            <img src="img/LogoAdv/PistonsLogo.png" class="oponente-logo">
+            <div class="jogo-info">
+                <h3>vs. Detroit Pistons</h3>
+                <p>Qua., 26 Nov. - 19:00</p>
+            </div>
+            <a href="palpite.html?time=pistons" class="palpite-btn">Palpitar</a>
+        </div>
+
+        <div class="jogo-card">
+            <img src="img/LogoAdv/WolvesLogo.png" class="oponente-logo">
+            <div class="jogo-info">
+                <h3>@ Minnesota Timberwolves</h3>
+                <p>Sáb., 29 Nov. - 19:00</p>
+            </div>
+            <a href="palpite.html?time=wolves" class="palpite-btn">Palpitar</a>
+        </div>
+
+        <div class="jogo-card">
+            <img src="img/LogoAdv/ClevelandLogo.png" class="oponente-logo">
+            <div class="jogo-info">
+                <h3>@ Cleveland Cavaliers</h3>
+                <p>Dom., 30 Nov - 20:00</p>
+            </div>
+            <a href="palpite.html?time=cavaliers" class="palpite-btn">Palpitar</a>
+        </div>
+
+        <div class="jogo-card">
+            <img src="img/LogoAdv/KnicksLogo.png" class="oponente-logo">
+            <div class="jogo-info">
+                <h3>vs. New York Knicks</h3>
+                <p>Ter., 2 Dez. - 22:00</p>
+            </div>
+            <a href="palpite.html?time=knicks" class="palpite-btn">Palpitar</a>
+        </div>
+
+        <div class="jogo-card">
+            <img src="img/LogoAdv/WizardsLogo.png" class="oponente-logo">
+            <div class="jogo-info">
+                <h3>@ Washington Wizards</h3>
+                <p>Qui., 4 Dez. - 21:00</p>
+            </div>
+            <a href="palpite.html?time=wizards" class="palpite-btn">Palpitar</a>
+        </div>
+
+        <div class="jogo-card">
+            <img src="img/LogoAdv/LakersLogo.png" class="oponente-logo">
+            <div class="jogo-info">
+                <h3>vs. Los Angeles Lakers</h3>
+                <p>Sex., 5 Dez. - 21:00</p>
+            </div>
+            <a href="palpite.html?time=lakers" class="palpite-btn">Palpitar</a>
+        </div>
+
+    </div>
+
+    <script>
+        var nome = sessionStorage.NOME_USUARIO;
+        if(!nome) {
+            window.location.href = 'login1.html';
+        } else {
+            document.getElementById('b_usuario').innerHTML = nome;
+        }
+
+        function sair() {
+            sessionStorage.clear();
+            window.location.href = 'login1.html';
+        }
+    </script>
+
+</body>
+</html>

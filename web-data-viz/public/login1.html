@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Login</title>
+  </head>
+  <body>
+    <main class="container">
+      <form>
+        <h1>
+          Bem Vindo de
+          <p style="color: #007a33">Volta</p>
+        </h1>
+        <div class="boxIpt">
+          <input
+            type="email"
+            id="email_input"
+            placeholder="ex: email@email.com"
+          />
+          <i class="bx bxs-user"></i>
+        </div>
+        <div class="boxIpt">
+          <input type="password" id="senha_input" placeholder="*******" />
+          <i class="bx bxs-lock-alt"></i>
+        </div>
+        <div class="remember-forgot">
+          <a href="index.html">Voltar para o início</a>
+        </div>
+        <button onclick="entrar()" type="button" class="login">Login</button>
+      </form>
+    </main>
+  </body>
+</html>
+
+<script>
+  function entrar() {
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var iptEmail = document.getElementById("email_input");
+    var iptSenha = document.getElementById("senha_input");
+
+    // Limpa erros anteriores
+    iptEmail.classList.remove("input-erro");
+    iptSenha.classList.remove("input-erro");
+
+    //  VALIDAÇÕES NOVAS 
+    var erro = false;
+
+    //  Validação de Email (Tem que ter @)
+    if (emailVar.indexOf("@") == -1) {
+      alert("O email precisa conter '@'!");
+      iptEmail.classList.add("input-erro");
+      erro = true;
+    }
+
+    //  Validação de Senha (Mais de 6 caracteres)
+    if (senhaVar.length <= 6) {
+      alert("A senha deve ter mais de 6 caracteres!");
+      iptSenha.classList.add("input-erro");
+      erro = true;
+    }
+
+    if (erro) return false; // Para aqui se tiver erro
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    // Fetch para a API
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ emailServer: emailVar, senhaServer: senhaVar }),
+    })
+      .then(function (resposta) {
+        if (resposta.ok) {
+          resposta.json().then((json) => {
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.NOME_USUARIO = json.nome;
+            sessionStorage.ID_USUARIO = json.id;
+            sessionStorage.setItem("usuario_logado", "true");
+
+            setTimeout(function () {
+              window.location = "menu.html"; // Vai para o Menu
+            }, 1000);
+          });
+        } else {
+          alert("Email ou senha incorretos!");
+          iptEmail.classList.add("input-erro");
+          iptSenha.classList.add("input-erro");
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+      });
+
+    return false;
+  }
+</script>
